@@ -10,7 +10,7 @@
         type="file"
         @change="handleFileUpload"
         accept=".pdf,.txt"
-        class="mb-4"
+        class="mb-4  py-2 px-2 rounded bg-gray-300 mr-16 w-[250px]"
       />
       <button
         @click="uploadFile"
