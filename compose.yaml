@@ -4,9 +4,11 @@ services:
       context: ./front_end
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3000:80"    # Maps Nginx's default port 80 to host's 3000
     depends_on:
       - backend
+    networks:
+      - hackathon-network
 
   backend:
     build:
@@ -16,16 +18,33 @@ services:
       - "5000:5000"
     environment:
       - NODE_ENV=development
-      - MONGO_URL=mongodb://mongo:27017/regulation_agents
+      - MONGO_URL=mongodb://mongo:27017/your_db
     depends_on:
       - mongo
+    networks:
+      - hackathon-network
+
+  instructlab:
+    build:
+      context: ./instructlab
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - hackathon-network
 
   mongo:
-    image: mongo:latest
+    image: mongo:5
     ports:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
+    networks:
+      - hackathon-network
 
 volumes:
   mongo-data:
+
+networks:
+  hackathon-network:
+    driver: bridge
