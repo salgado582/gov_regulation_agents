@@ -24,3 +24,6 @@ class UserRegistrationForm(forms.ModelForm):
         return cd['password2']
 
 
+class UploadFileForm(forms.Form):
+    title = forms.CharField(max_length=50)
+    file = forms.FileField()

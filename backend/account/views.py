@@ -1,8 +1,12 @@
-from django.http import HttpResponse
+import os
+
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from .forms import LoginForm, UserRegistrationForm
+from .forms import LoginForm, UserRegistrationForm, UploadFileForm
+from .models import PDFUpload
+import PyPDF2
 
 
 @login_required
@@ -48,3 +52,35 @@ def register(request):
     else:
         user_form = UserRegistrationForm()
     return render(request, 'account/register.html', {'user_form': user_form})
+
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/success/url/')
+        else:
+            form = UploadFileForm()
+        return render(request, "upload.html", {'form': form})
+
+
+pdf_path = PDFUpload.file
+
+
+def pdf_to_text(pdf_path, output_txt):
+    with open(pdf_path, 'rb') as pdf_file:
+        pdf_reader = PyPDF2.PdfReader(pdf_file)
+        text = ''
+
+        for page_num in range(len(pdf_reader.pages)):
+            page = pdf_reader.pages[page_num]
+            text += page.extract_text()
+
+    with open(output_txt, 'w', encoding='utf-8') as txt_file:
+        txt_file.write(text)
+
+
+if __name__ == "__main__":
+    output_txt = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'files')
+    pdf_to_text(pdf_path, output_txt)

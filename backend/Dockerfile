@@ -1,4 +1,3 @@
-FROM ubuntu:22.04
 FROM python:3.11-slim
 
 RUN mkdir /app
