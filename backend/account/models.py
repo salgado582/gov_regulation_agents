@@ -9,3 +9,8 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'User {self.username}'
+
+
+class PDFUpload(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, blank=True, null=True)
+    file = models.FileField(upload_to='files')
