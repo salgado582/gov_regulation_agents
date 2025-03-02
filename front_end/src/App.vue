@@ -1,6 +1,6 @@
 <!-- src/App.vue -->
 <template>
-  <div class="min-h-screen bg-gray-100">
+  <div class="min-h-screen bg-gradient-to-r from-blue-50 to-blue-100">
     <Navbar />
     <div class="container mx-auto p-4">
       <router-view />

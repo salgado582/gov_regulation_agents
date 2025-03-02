@@ -1,3 +1,4 @@
+<!-- src/views/Login.vue -->
 <template>
   <div
     class="flex justify-center items-center h-screen bg-gradient-to-r from-blue-50 to-blue-100"
@@ -43,6 +44,8 @@
 </template>
 
 <script>
+import { useAuthStore } from "../store/auth";
+
 export default {
   name: "Login",
   data() {
@@ -51,12 +54,15 @@ export default {
       password: "",
     };
   },
+  setup() {
+    const authStore = useAuthStore();
+    return { authStore };
+  },
   methods: {
     login() {
-      // In a real application, add authentication logic here.
       if (this.username && this.password) {
-        // Set an auth flag
-        localStorage.setItem("auth", "true");
+        // Call the store's login action to update the reactive auth state.
+        this.authStore.login();
         this.$router.push("/dashboard");
       } else {
         alert("Please enter your credentials.");

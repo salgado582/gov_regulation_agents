@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import About from "../views/About.vue"; // new About Us page
 import Dashboard from "../views/Dashboard.vue";
 import DocumentAuditing from "../views/DocumentAuditing.vue";
 import Login from "../views/Login.vue";
@@ -31,6 +32,12 @@ const routes = [
     name: "Profile",
     component: Profile,
     meta: { requiresAuth: true },
+  },
+  {
+    path: "/about",
+    name: "About",
+    component: About,
+    meta: { requiresAuth: false },
   },
 ];
 

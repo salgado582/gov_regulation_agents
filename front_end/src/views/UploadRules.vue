@@ -1,25 +1,27 @@
 <!-- src/views/UploadRules.vue -->
 <template>
   <div>
-    <h2 class="text-2xl font-bold mb-4">Upload Department Rules</h2>
-    <p class="mb-4">
-      Upload your department rules file (PDF or TXT) to train the AI.
-    </p>
-    <input
-      type="file"
-      @change="handleFileUpload"
-      accept=".pdf,.txt"
-      class="mb-4"
-    />
-    <button
-      @click="uploadFile"
-      class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
-    >
-      Upload
-    </button>
-    <p v-if="uploadStatus" class="mt-4 text-sm text-gray-600">
-      {{ uploadStatus }}
-    </p>
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-lg">
+      <h2 class="text-2xl font-bold mb-4">Upload Department Rules</h2>
+      <p class="mb-4">
+        Upload your department rules file (PDF or TXT) to train the AI.
+      </p>
+      <input
+        type="file"
+        @change="handleFileUpload"
+        accept=".pdf,.txt"
+        class="mb-4"
+      />
+      <button
+        @click="uploadFile"
+        class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+      >
+        Upload
+      </button>
+      <p v-if="uploadStatus" class="mt-4 text-sm text-gray-600">
+        {{ uploadStatus }}
+      </p>
+    </div>
   </div>
 </template>
 
