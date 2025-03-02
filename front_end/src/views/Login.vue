@@ -32,6 +32,8 @@
             class="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
           />
         </div>
+        <!-- <p v-if="errorMessage" class="text-red-500 text-sm mb-4">{{ errorMessage }}</p> -->
+
         <button
           type="submit"
           class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded transition-colors duration-200"
@@ -44,6 +46,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import { useAuthStore } from "../store/auth";
 
 export default {
@@ -52,6 +55,8 @@ export default {
     return {
       username: "",
       password: "",
+      errorMessage: "",
+
     };
   },
   setup() {
@@ -59,6 +64,31 @@ export default {
     return { authStore };
   },
   methods: {
+
+    // API call to login
+    // async login() {
+    //   if (!this.username || !this.password) {
+    //     this.errorMessage = "Please enter your credentials.";
+    //     return;
+    //   }
+
+    //   try {
+    //     const response = await axios.post("http://127.0.0.1:8000/login/", {
+    //       username: this.username,
+    //       password: this.password,
+    //     });
+
+    //     if (response.data === "Authentication succeed.") {
+    //       this.authStore.login(); // Save authentication state
+    //       this.$router.push("/dashboard"); // Redirect to dashboard
+    //     } else {
+    //       this.errorMessage = response.data; // Show backend response error
+    //     }
+    //   } catch (error) {
+    //     this.errorMessage = "Login failed. Please check your credentials.";
+    //   }
+    // },
+  
     login() {
       if (this.username && this.password) {
         // Call the store's login action to update the reactive auth state.
