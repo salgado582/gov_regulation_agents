@@ -69,6 +69,8 @@ Verify that environment variables are correctly configured.
 
 For Front-end:
 
+-install vue js
+- install node js
 - Open front_end directry.
 - Write the following commands:
 - npm install
