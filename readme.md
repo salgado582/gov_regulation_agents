@@ -66,3 +66,14 @@ Troubleshooting:
 Ensure Docker and Docker Compose are installed and running.
 Check container logs for any errors.
 Verify that environment variables are correctly configured.
+
+For Front-end:
+
+-install vue js
+- install node js
+- Open front_end directry.
+- Write the following commands:
+- npm install
+- npm run dev
+
+
