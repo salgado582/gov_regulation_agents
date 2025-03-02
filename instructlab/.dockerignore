@@ -1,0 +1,14 @@
+
+# Exclude local virtual environments
+venv/
+
+# Exclude local caches
+# .cache/instructlab/models/  
+# .local/
+.git/
+
+# Exclude any downloaded models (if you prefer to mount them at runtime)
+# models/
+
+# Exclude logs and other temporary files
+*.log
