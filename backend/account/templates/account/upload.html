@@ -5,6 +5,11 @@
 {% block content %}
 <h1>Welcome {{ new_user.first_name }}!</h1>
 <p>
-  Your file uploaded successfully.
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <label for="file">Select a file:</label>
+  <input type="file" id="file" name="file">
+  <input type="submit" value="Upload">
+</form>
 </p>
 {% endblock %}

@@ -13,8 +13,8 @@
       <li {% if section == "dashboard" %}class="selected"{% endif %}>
         <a href="{% url "dashboard" %}">Dashboard</a>
       </li>
-      <li {% if section == "images" %}class="selected"{% endif %}>
-        <a href="#">Avatar</a>
+      <li>
+        <a href="{% url "upload" %}">Upload</a>
       </li>
     </ul>
     {% endif %}

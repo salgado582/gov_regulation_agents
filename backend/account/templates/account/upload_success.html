@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Hello{% endblock %}
+
+{% block content %}
+<h1>Welcome {{ new_user.first_name }}!</h1>
+<p>
+  Your file {{ form.title }} was uploaded.
+  You can back to<a href="{% url "dashboard" %}>panel</a>.
+</p>
+{% endblock %}

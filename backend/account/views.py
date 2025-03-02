@@ -4,6 +4,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
+
 from .forms import LoginForm, UserRegistrationForm, UploadFileForm
 from .models import PDFUpload
 import PyPDF2
@@ -54,15 +56,15 @@ def register(request):
     return render(request, 'account/register.html', {'user_form': user_form})
 
 
-def upload_file(request):
+def upload(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/success/url/')
+            return render(request, 'upload_success.html', {'file_name': form.title})
         else:
             form = UploadFileForm()
-        return render(request, "upload.html", {'form': form})
+        return render(request, "dashboard.html", {'form': form})
 
 
 pdf_path = PDFUpload.file
