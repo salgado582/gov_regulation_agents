@@ -6,7 +6,7 @@
       <li
         v-for="(pdf, index) in testPDFs"
         :key="index"
-        class="py-3 hover:bg-blue-50 transition-colors"
+        class="py-3 px-2 hover:bg-blue-50 transition-colors"
       >
         {{ pdf }}
       </li>

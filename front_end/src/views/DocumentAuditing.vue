@@ -11,7 +11,7 @@
             :key="index"
             @click="selectDocument(doc)"
             :class="[
-              'py-3 cursor-pointer transition-colors',
+              'py-3 px-2 cursor-pointer transition-colors',
               selectedDocument === doc
                 ? 'bg-blue-100 font-semibold'
                 : 'hover:bg-blue-50',
