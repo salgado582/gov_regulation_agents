@@ -18,7 +18,5 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
 # Expose port 80 to the Docker host
-EXPOSE 80
+EXPOSE 3000
 
-# Start Nginx in the foreground
-CMD ["nginx", "-g", "daemon off;"]
