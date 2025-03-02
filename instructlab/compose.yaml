@@ -1,0 +1,37 @@
+services:
+  instructlab:
+    build: .
+    container_name: instructlab
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    # volumes:
+    #   - ./instructLab:/workspaces/instructlab
+    #   - ./models:/workspaces/instructlab/.cache/instructlab/models
+    environment:
+      - GIT_PYTHON_GIT_EXECUTABLE=/usr/bin/git  
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - HOME=/workspaces/instructlab
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    develop: #https://docs.docker.com/compose/how-tos/file-watch/
+      watch:
+        - action: sync
+          path: .       
+          target: /workspaces/instructlab
+          ignore: # Ignore common directories/files that shouldn’t trigger a sync
+            - .git/
+            - __pycache__/
+            - venv/
+            - node_modules/
+            - .checkpoints/
+            - .local/
+        - action: rebuild
+          path: Dockerfile
